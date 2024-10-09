@@ -52,16 +52,18 @@ int main() {
 		printf("\n");
 	}
 
-	float sol[n];
-	sol[n - 1] = matrix[n-1][n]/matrix[n-1][n-1];
-	for (int i = n - 2; i >= 0; i--) {
-		float sum = 0;
-		int j;
-		for (j = n - 1; j > i; j--) {
-			sum += sol[j]*matrix[i][j];
-		}
-		sol[i] = (matrix[i][n] - sum)/matrix[i][j];
-	}
+
+    float sol[n];
+    for (int i = n - 1; i >= 0; i--)
+    {
+        float sum = 0;
+        for (int j = i + 1; j < n; j++)
+        {
+            sum += sol[j] * matrix[i][j];
+        }
+
+        sol[i] = ((matrix[i][n] - sum) / matrix[i][i]);
+    }
 
 	printf("The solutions to the given system of linear equations is, ");
 	for (int i = 0; i < n; i++) {
